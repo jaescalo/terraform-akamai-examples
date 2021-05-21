@@ -1,9 +1,9 @@
 # Terraform Use Cases for Akamai provider: SaaS and Workspaces
 This demo includes the following use cases for Terarform with the Akamai provider:
 
-* **[Akamai Snippets](akamai-property-json-snippets)**. By using the Akamai Property Manager CLI a property can be broken down into several json snippet files, and inside these files use variables to replace certain values based on your variable definitions.
-* **[SaaS](saas)**. The Terraform for_each function allows to iterate through variables/parameter sets resulting in deploying multiple configurations in a single plan/apply.
-* **[Workspaces](terraform-workspaces)**. Allows to reuse the *.tf and templates files in different environments (i.e. dev, qa, prod) keeping the SaaS functionality. Different state files will keep track of the different environments.
+* **[Akamai Snippets](#akamai-property-json-snippets)**. By using the Akamai Property Manager CLI a property can be broken down into several json snippet files, and inside these files use variables to replace certain values based on your variable definitions.
+* **[SaaS](#saas)**. The Terraform for_each function allows to iterate through variables/parameter sets resulting in deploying multiple configurations in a single plan/apply.
+* **[Workspaces](#terraform-workspaces)**. Allows to reuse the *.tf and templates files in different environments (i.e. dev, qa, prod) keeping the SaaS functionality. Different state files will keep track of the different environments.
 
 *Keyword(s):* terraform, akamai provider, automation, for_each, SaaS, workspace<br>
 
@@ -13,7 +13,7 @@ This demo includes the following use cases for Terarform with the Akamai provide
 - [Akamai Property Manager CLI](https://github.com/akamai/cli-property-manager)
 
 ## Akamai Property JSON Snippets
-Use the Akamai Property Manager CLI to break down a property into several json files. Each json snippet will contain the rules and behaviors for each parent rule by default. The snippets (JSON templates) will be used in this example in the [SaaS](saas) and [Workspaces](workspaces) use cases, however here's a brief description on how they integrate with Terraform.
+Use the Akamai Property Manager CLI to break down a property into several json files. Each json snippet will contain the rules and behaviors for each parent rule by default. The snippets (JSON templates) will be used in this example in the [SaaS](#saas) and [Workspaces](#terraform-workspaces) use cases, however here's a brief description on how they integrate with Terraform.
 
 1. An existing property to use as baseline can be imported into snippets by submitting the following snippets command:
 
@@ -46,7 +46,7 @@ The Terraform `for_each` function allows to iterate through variables/parameter 
 Steps to set it up assuming the property snippets (see above) have been created:
 
 1. Create a variables.tf file which will contain the variable definitions. In this example we're defining the cpcode, origin, hostname and edge_hostname as variables inside the `properties' object.
- 
+```
 variable "properties" {
     type = map(object({
         cpcode = string
@@ -55,9 +55,9 @@ variable "properties" {
         edge_hostname = string
     }))
 }
- 
+```
 2. Create the terraform.tfvars which will contain the actual variable values. Here’s where all the parameters for the different configurations are added. Just like you would do in the environments/{env}/variables.json in the Akamai Pipeline CLI.
- 
+```
 properties =  {
     "property1.name.goes.here" = {
         cpcode = "<cpcode#1>"
@@ -72,7 +72,7 @@ properties =  {
         edge_hostname = "edge-hostname2.goes.here"
     }
 }
- 
+```
 This example assumes the CP Codes are available before hand. However in a real scenario you'll want to create the new CP Codes on the fly as well.
 **IMPORTANT**: The property name is actually the key in the snippet above. Just like you would have in a JSON file.
  
