@@ -2,7 +2,7 @@
 This demo includes the following use cases for Terarform with the Akamai provider:
 
 * **[Akamai Snippets](#akamai-property-json-snippets)**. By using the Akamai Property Manager CLI a property can be broken down into several json snippet files, and inside these files use variables to replace certain values based on your variable definitions.
-* **[SaaS](#saas)**. The Terraform for_each function allows to iterate through variables/parameter sets resulting in deploying multiple configurations in a single plan/apply.
+* **[SaaS](#saas)**. The Terraform for_each (introduced in [Terraform version 0.13.0](https://github.com/hashicorp/terraform/blob/v0.13/CHANGELOG.md)) function allows to iterate through variables/parameter sets resulting in deploying multiple configurations in a single plan/apply.
 * **[Workspaces](#terraform-workspaces)**. Allows to reuse the *.tf and templates files in different environments (i.e. dev, qa, prod) keeping the SaaS functionality. Different state files will keep track of the different environments.
 
 *Keyword(s):* terraform, akamai provider, automation, for_each, SaaS, workspace<br>
