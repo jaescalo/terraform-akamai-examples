@@ -1,3 +1,7 @@
+# My Exceptions
+.DS_Store
+snippets-logs.log
+
 # Local .terraform directories
 **/.terraform/*
 
