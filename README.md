@@ -21,7 +21,7 @@ Use the Akamai Property Manager CLI to break down a property into several json f
 
 The resulting JSON snippets will be located under the folder PROPERTY-NAME/config-snippets. You can copy these files under a different folder where the TF configuration will reference to. In this example these have been moved to the Terraform project folder as config-snippets/.
 
-2. In your main *.tf file use the data source ["akamai_property_rules_template"](https://registry.terraform.io/providers/akamai/akamai/latest/docs/data-sources/property_rules_template) which lets you configure a rule tree through the use of JSON template files (snippets). You can also keep your Property Manager CLI variable definition files and references (`“${env.<variableName>}"`)
+2. In your main *.tf file use the data source ["akamai_property_rules_template"](https://registry.terraform.io/providers/akamai/akamai/latest/docs/data-sources/property_rules_template) (introduced in Akamai provider v1.0.0 - Dec9 2020) which lets you configure a rule tree through the use of JSON template files (snippets). You can also keep your Property Manager CLI variable definition files and references (`“${env.<variableName>}"`)
 
 This is an example use case where the `“${env.cpcode}"` and `“${env.origin}"` are replaced in your JSON snippets by the values defined below and the final rule tree is built:
 
