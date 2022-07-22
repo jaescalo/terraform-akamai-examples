@@ -1,0 +1,338 @@
+{
+  "name": "Offload origin",
+  "behaviors": [
+    {
+      "name": "caching",
+      "options": {
+        "behavior": "NO_STORE"
+      }
+    },
+    {
+      "name": "tieredDistribution",
+      "options": {
+        "enabled": true,
+        "tieredDistributionMap": "CH2"
+      }
+    },
+    {
+      "name": "validateEntityTag",
+      "options": {
+        "enabled": false
+      }
+    },
+    {
+      "name": "removeVary",
+      "options": {
+        "enabled": false
+      }
+    },
+    {
+      "name": "cacheError",
+      "options": {
+        "enabled": true,
+        "preserveStale": true,
+        "ttl": "10s"
+      }
+    },
+    {
+      "name": "cacheKeyQueryParams",
+      "options": {
+        "behavior": "INCLUDE_ALL_ALPHABETIZE_ORDER"
+      }
+    },
+    {
+      "name": "prefreshCache",
+      "options": {
+        "enabled": true,
+        "prefreshval": 90
+      }
+    },
+    {
+      "name": "downstreamCache",
+      "options": {
+        "allowBehavior": "LESSER",
+        "behavior": "ALLOW",
+        "sendHeaders": "CACHE_CONTROL",
+        "sendPrivate": false
+      }
+    }
+  ],
+  "children": [
+    "#include:offload/CSS_and_JavaScript.json",
+    "#include:offload/Fonts.json",
+    {
+      "name": "Images",
+      "criteria": [
+        {
+          "name": "fileExtension",
+          "options": {
+            "matchCaseSensitive": false,
+            "matchOperator": "IS_ONE_OF",
+            "values": [
+              "jpg",
+              "jpeg",
+              "png",
+              "gif",
+              "webp",
+              "jp2",
+              "ico",
+              "svg",
+              "svgz"
+            ]
+          }
+        }
+      ],
+      "behaviors": [
+        {
+          "name": "caching",
+          "options": {
+            "behavior": "MAX_AGE",
+            "mustRevalidate": false,
+            "ttl": "30d"
+          }
+        }
+      ],
+      "comments": "Override the default caching behavior for images.",
+      "criteriaMustSatisfy": "any",
+      "options": {}
+    },
+    {
+      "name": "Files",
+      "criteria": [
+        {
+          "name": "fileExtension",
+          "options": {
+            "matchCaseSensitive": false,
+            "matchOperator": "IS_ONE_OF",
+            "values": [
+              "pdf",
+              "doc",
+              "docx",
+              "odt"
+            ]
+          }
+        }
+      ],
+      "behaviors": [
+        {
+          "name": "caching",
+          "options": {
+            "behavior": "MAX_AGE",
+            "mustRevalidate": false,
+            "ttl": "7d"
+          }
+        }
+      ],
+      "comments": "Override the default caching behavior for files. Files containing Personal Identified Information (PII) should require Edge authentication or not be cached at all.",
+      "criteriaMustSatisfy": "any",
+      "options": {}
+    },
+    {
+      "name": "Other static objects",
+      "criteria": [
+        {
+          "name": "fileExtension",
+          "options": {
+            "matchCaseSensitive": false,
+            "matchOperator": "IS_ONE_OF",
+            "values": [
+              "aif",
+              "aiff",
+              "au",
+              "avi",
+              "bin",
+              "bmp",
+              "cab",
+              "carb",
+              "cct",
+              "cdf",
+              "class",
+              "dcr",
+              "dtd",
+              "exe",
+              "flv",
+              "gcf",
+              "gff",
+              "grv",
+              "hdml",
+              "hqx",
+              "ini",
+              "mov",
+              "mp3",
+              "nc",
+              "pct",
+              "ppc",
+              "pws",
+              "swa",
+              "swf",
+              "txt",
+              "vbs",
+              "w32",
+              "wav",
+              "midi",
+              "wbmp",
+              "wml",
+              "wmlc",
+              "wmls",
+              "wmlsc",
+              "xsd",
+              "zip",
+              "pict",
+              "tif",
+              "tiff",
+              "mid",
+              "jxr",
+              "jar"
+            ]
+          }
+        }
+      ],
+      "behaviors": [
+        {
+          "name": "caching",
+          "options": {
+            "behavior": "MAX_AGE",
+            "mustRevalidate": false,
+            "ttl": "7d"
+          }
+        }
+      ],
+      "comments": "Override the default caching behavior for other static objects.",
+      "criteriaMustSatisfy": "any",
+      "options": {}
+    },
+    {
+      "name": "HTML pages",
+      "criteria": [
+        {
+          "name": "fileExtension",
+          "options": {
+            "matchCaseSensitive": false,
+            "matchOperator": "IS_ONE_OF",
+            "values": [
+              "html",
+              "htm",
+              "php",
+              "jsp",
+              "aspx",
+              "EMPTY_STRING"
+            ]
+          }
+        }
+      ],
+      "behaviors": [
+        {
+          "name": "caching",
+          "options": {
+            "behavior": "NO_STORE"
+          }
+        },
+        {
+          "name": "cacheKeyQueryParams",
+          "options": {
+            "behavior": "IGNORE",
+            "exactMatch": true,
+            "parameters": [
+              "gclid",
+              "fbclid",
+              "utm_source",
+              "utm_campaign",
+              "utm_medium",
+              "utm_content"
+            ]
+          }
+        }
+      ],
+      "comments": "Override the default caching behavior for HTML pages cached on edge servers.",
+      "criteriaMustSatisfy": "all",
+      "options": {}
+    },
+    {
+      "name": "Redirects",
+      "behaviors": [
+        {
+          "name": "cacheRedirect",
+          "options": {
+            "enabled": "false"
+          }
+        },
+        {
+          "name": "chaseRedirects",
+          "options": {
+            "enabled": false
+          }
+        }
+      ],
+      "comments": "Configure caching for HTTP redirects. The redirect is cached for the same TTL as a 200 HTTP response when this feature is enabled.",
+      "criteriaMustSatisfy": "all",
+      "options": {}
+    },
+    {
+      "name": "POST responses",
+      "behaviors": [
+        {
+          "name": "cachePost",
+          "options": {
+            "enabled": false
+          }
+        }
+      ],
+      "comments": "Define when HTTP POST requests should be cached. You should enable it under a criteria match.",
+      "criteriaMustSatisfy": "all",
+      "options": {}
+    },
+    {
+      "name": "GraphQL",
+      "criteria": [
+        {
+          "name": "path",
+          "options": {
+            "matchCaseSensitive": false,
+            "matchOperator": "MATCHES_ONE_OF",
+            "normalize": false,
+            "values": [
+              "/graphql"
+            ]
+          }
+        }
+      ],
+      "behaviors": [
+        {
+          "name": "graphqlCaching",
+          "options": {
+            "enabled": false
+          }
+        }
+      ],
+      "comments": "Define when your GraphQL queries should be cached.",
+      "criteriaMustSatisfy": "all",
+      "options": {}
+    },
+    {
+      "name": "Uncacheable objects",
+      "criteria": [
+        {
+          "name": "cacheability",
+          "options": {
+            "matchOperator": "IS_NOT",
+            "value": "CACHEABLE"
+          }
+        }
+      ],
+      "behaviors": [
+        {
+          "name": "downstreamCache",
+          "options": {
+            "behavior": "BUST"
+          }
+        }
+      ],
+      "comments": "Configure the default client caching behavior for uncacheable content at the edge.",
+      "criteriaMustSatisfy": "all",
+      "options": {}
+    }
+  ],
+  "comments": "Control the settings related to caching content at the edge and in the browser. As a result, fewer requests go to your origin, fewer bytes leave your data centers, and your assets are closer to your users.",
+  "criteriaMustSatisfy": "all",
+  "options": {}
+}

@@ -1,0 +1,34 @@
+{
+    "name": "No Offload",
+    "children": [],
+    "behaviors": [
+        {
+            "name": "caching",
+            "options": {
+                "behavior": "NO_STORE"
+            }
+        },
+        {
+            "name": "cacheError",
+            "options": {
+                "enabled": false
+            }
+        },
+        {
+            "name": "downstreamCache",
+            "options": {
+                "behavior": "BUST"
+            }
+        },
+        {
+            "name": "tieredDistribution",
+            "options": {
+                "enabled": false
+            }
+        }
+    ],
+    "criteria": [],
+    "criteriaMustSatisfy": "all",
+    "templateLink": "/platformtoolkit/service/ruletemplate/164629738/1?accountId=XK-2T&gid=132797&ck=19.9.1",
+    "comments": "Controls caching, which offloads traffic away from the origin. Most objects types are not cached. However, the child rules override this behavior for certain subsets of requests."
+}

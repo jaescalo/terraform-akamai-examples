@@ -1,0 +1,16 @@
+{
+    "definitions": {
+        "origin": {
+            "type": "userVariableValue",
+            "default": ""
+        },
+        "cpcode": {
+            "type": "userVariableValue",
+            "default": 000000
+        },
+        "comments": {
+            "type": "userVariableValue",
+            "default": "Activated by Terraform"
+        }
+    }
+}

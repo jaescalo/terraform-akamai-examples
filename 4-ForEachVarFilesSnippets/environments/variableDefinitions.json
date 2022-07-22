@@ -1,0 +1,12 @@
+{
+    "definitions": {
+        "origin": {
+            "type": "userVariableValue",
+            "default": ""
+        },
+        "cpcode": {
+            "type": "userVariableValue",
+            "default": ""
+        }
+    }
+}
