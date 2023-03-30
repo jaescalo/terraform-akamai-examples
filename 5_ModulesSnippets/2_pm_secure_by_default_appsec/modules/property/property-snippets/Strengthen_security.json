@@ -1,0 +1,162 @@
+{
+  "name": "Strengthen security",
+  "children": [
+    {
+      "name": "Allowed methods",
+      "behaviors": [
+        {
+          "name": "allHttpInCacheHierarchy",
+          "options": {
+            "enabled": true
+          }
+        }
+      ],
+      "children": [
+        {
+          "name": "POST",
+          "behaviors": [
+            {
+              "name": "allowPost",
+              "options": {
+                "allowWithoutContentLength": false,
+                "enabled": true
+              }
+            }
+          ],
+          "comments": "Allow use of the POST HTTP request method.",
+          "criteriaMustSatisfy": "all",
+          "options": {}
+        },
+        {
+          "name": "OPTIONS",
+          "behaviors": [
+            {
+              "name": "allowOptions",
+              "options": {
+                "enabled": true
+              }
+            }
+          ],
+          "comments": "Allow use of the OPTIONS HTTP request method.",
+          "criteriaMustSatisfy": "all",
+          "options": {}
+        },
+        {
+          "name": "PUT",
+          "behaviors": [
+            {
+              "name": "allowPut",
+              "options": {
+                "enabled": false
+              }
+            }
+          ],
+          "comments": "Allow use of the PUT HTTP request method.",
+          "criteriaMustSatisfy": "all",
+          "options": {}
+        },
+        {
+          "name": "DELETE",
+          "behaviors": [
+            {
+              "name": "allowDelete",
+              "options": {
+                "enabled": false
+              }
+            }
+          ],
+          "comments": "Allow use of the DELETE HTTP request method.",
+          "criteriaMustSatisfy": "all",
+          "options": {}
+        },
+        {
+          "name": "PATCH",
+          "behaviors": [
+            {
+              "name": "allowPatch",
+              "options": {
+                "enabled": false
+              }
+            }
+          ],
+          "comments": "Allow use of the PATCH HTTP request method.",
+          "criteriaMustSatisfy": "all",
+          "options": {}
+        }
+      ],
+      "comments": "Allow the use of HTTP methods. Consider enabling additional methods under a path match for increased origin security.",
+      "criteriaMustSatisfy": "all",
+      "options": {}
+    },
+    {
+      "name": "Obfuscate debug info",
+      "behaviors": [
+        {
+          "name": "cacheTagVisible",
+          "options": {
+            "behavior": "PRAGMA_HEADER"
+          }
+        }
+      ],
+      "comments": "Do not expose back-end information unless the request contains the Pragma debug header.",
+      "criteriaMustSatisfy": "all",
+      "options": {}
+    },
+    {
+      "name": "Obfuscate backend info",
+      "criteria": [
+        {
+          "name": "requestHeader",
+          "options": {
+            "headerName": "X-Akamai-Debug",
+            "matchCaseSensitiveValue": true,
+            "matchOperator": "IS_NOT_ONE_OF",
+            "matchWildcardName": false,
+            "matchWildcardValue": false,
+            "values": [
+              "true"
+            ]
+          }
+        }
+      ],
+      "behaviors": [
+        {
+          "name": "modifyOutgoingResponseHeader",
+          "options": {
+            "action": "DELETE",
+            "customHeaderName": "X-Powered-By",
+            "standardDeleteHeaderName": "OTHER"
+          }
+        },
+        {
+          "name": "modifyOutgoingResponseHeader",
+          "options": {
+            "action": "DELETE",
+            "customHeaderName": "Server",
+            "standardDeleteHeaderName": "OTHER"
+          }
+        }
+      ],
+      "comments": "Do not expose back-end information unless the request contains an additional secret header. Regularly change the criteria to use a specific unique value for the secret header.",
+      "criteriaMustSatisfy": "all",
+      "options": {}
+    },
+    {
+      "name": "HSTS",
+      "behaviors": [
+        {
+          "name": "httpStrictTransportSecurity",
+          "options": {
+            "enable": false
+          }
+        }
+      ],
+      "comments": "Require all browsers to connect to your site using HTTPS.",
+      "criteriaMustSatisfy": "all",
+      "options": {}
+    }
+  ],
+  "comments": "Control the settings that minimize the information your website shares with clients and malicious entities to reduce your exposure to threats.",
+  "criteriaMustSatisfy": "all",
+  "options": {}
+}
