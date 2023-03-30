@@ -1,4 +1,4 @@
-# Terraform Modules and JSON Snippets (3 Templating Options)
+# Terraform Modules with Akamai Examples
 
 TF Modules provide the next step of flexibility and code reutilization by executing all the modules or individual modules within different places. Generating different **state files** which can then be stored individually as well. 
 
