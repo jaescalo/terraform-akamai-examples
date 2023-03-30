@@ -11,7 +11,6 @@ output "property_id" {
   value = module.akamai_property.property_id
 }
 
-
 # Output from the EdgeDNS Module
 output "hostnames_from_dns" {
   value = module.akamai_edgedns_records.hostnames_from_dns

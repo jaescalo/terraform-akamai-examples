@@ -46,7 +46,7 @@ resource "akamai_property" "my_property" {
       cert_provisioning_type = "DEFAULT"
   }
 
-  rule_format = "latest"
+  rule_format = "v2022-06-28"
   rules       = data.akamai_property_rules_template.rules.json
 }
 
