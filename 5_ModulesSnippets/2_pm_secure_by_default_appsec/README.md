@@ -1,6 +1,6 @@
 # Secure by Default Onboard to Akamai
 
-**Use Case:** Fully onboard a domain to Akamai incluiding the certificate creation (Secure by Default), edge hostname, cp code, property, DNS records and application security.
+**Use Case:** Fully onboard a domain to Akamai incluiding the certificate creation (Secure by Default), edge hostname, cp code, property, DNS records and application security. Based on [Akamai's Official Examples](https://github.com/akamai/examples-terraform)
 
 ## Property Manager Provider
 Use for creating new Edge Hostnames, CP Codes and of course new Properties. In this particular case the Edge Hostname creation was created as a separate module for illustration purposes only. Observe that the Edge Hostname creation needs the enrollment ID from the certificate creation.
