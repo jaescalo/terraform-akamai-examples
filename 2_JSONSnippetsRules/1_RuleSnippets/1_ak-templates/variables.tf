@@ -14,6 +14,11 @@ variable "origin" {
   description = "Origin Hostname"
 }
 
+variable "origin_default_cn_list" {
+  type    = list(string)
+  default = []
+}
+
 variable "comments" {
   type        = string
   description = "Property Version Notes"

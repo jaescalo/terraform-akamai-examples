@@ -1,6 +1,13 @@
 network  = "staging"
 contact  = ["email@akamai.com"]
 origin   = "my.origin.com"
+
+origin_default_cn_list = [
+  "{{Origin Hostname}}",
+  "{{Forward Host Header}}",
+  "alternate-tf-demo.host.com"
+]
+
 comments = "Activation from Terraform"
 
 property_and_edge_hostnames = [{

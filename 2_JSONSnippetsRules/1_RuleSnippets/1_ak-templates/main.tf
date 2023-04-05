@@ -39,6 +39,11 @@ data "akamai_property_rules_template" "rules" {
     type  = "string"
   }
   variables {
+    name = "cn_list"
+    value = "${join("\", \"", var.origin_default_cn_list)}"
+    type = "string"
+  }
+  variables {
     name  = "comments"
     value = var.comments
     type  = "string"
