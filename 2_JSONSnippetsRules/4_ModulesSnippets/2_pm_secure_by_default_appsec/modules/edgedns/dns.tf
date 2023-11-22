@@ -15,7 +15,7 @@ resource "akamai_dns_record" "my_hostnames_to_akamaize" {
 
 resource "akamai_dns_record" "my_hostnames_dns_validation" {
   zone       = var.dns_zone
-  recordtype = "CNAME"
+  recordtype = "TXT"
   ttl        = 60
   target     = [ data.akamai_property_hostnames.my_hostnames.hostnames[0].cert_status[0].target ]
   name       = data.akamai_property_hostnames.my_hostnames.hostnames[0].cert_status[0].hostname  
