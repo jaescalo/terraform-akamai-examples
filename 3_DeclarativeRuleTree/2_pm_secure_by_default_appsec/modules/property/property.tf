@@ -22,7 +22,7 @@ resource "akamai_edge_hostname" "my_edge_hostname" {
 
 
 resource "akamai_property" "my_property" {
-  name        = "wingmanstrums.com"
+  name        = var.property_name
   contract_id = data.akamai_contract.contract.id
   group_id    = data.akamai_contract.contract.group_id
   product_id  = "prd_Fresca"
