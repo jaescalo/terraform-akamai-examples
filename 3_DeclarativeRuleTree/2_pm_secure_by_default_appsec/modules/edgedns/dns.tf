@@ -49,6 +49,11 @@ resource "akamai_dns_record" "my_AKAMAICDN" {
     ttl = 20
 }
 
+# Remove the ZAM from the list of hostnames becase for the ZAM we already created the AKAMAICDN record above
+locals {
+  dns_hostnames_no_zam = [for item in var.dns_hostnames : item if item != var.dns_zone]
+}
+
 resource "akamai_dns_record" "my_dns_hostnames" {
 
   for_each = toset(var.dns_hostnames)
@@ -60,24 +65,22 @@ resource "akamai_dns_record" "my_dns_hostnames" {
   name       = each.value
 }
 
+# Create a map with the same length as dns_hostnames, otherwise if the resource creation depends on data.akamai_property_hostnames TF can't know how many resources it needs to create before the apply and fails.
+locals {
+  cert_status_map = {
+    for idx, hostname in var.dns_hostnames : hostname => {
+      data.akamai_property_hostnames.wingmanstrums_hostnames.hostnames[idx].cert_status[0].hostname = data.akamai_property_hostnames.wingmanstrums_hostnames.hostnames[idx].cert_status[0].target
+    }
+  }
+}
+
 resource "akamai_dns_record" "my_dns_validation" {
 
-  # This error will come up the first time: The "for_each" map includes keys derived from resource attributes that cannot be determined until apply, and so Terraform cannot determine the full set of keys that will identify the instances of this resource.
-  
-  # When working with unknown values in for_each, it's better to define the map keys statically in your configuration and place apply-time results only in the map values.
-  
-  # Alternatively, you could use the -target planning option to first apply only the resources that the for_each value depends on, and then apply a second time to fully converge.
-
-  # As suggested the alternative is to use the -target=module.akamai_property option in the tf plan/apply command
-
-  for_each = {
-    for h in data.akamai_property_hostnames.my_hostnames.hostnames :
-    h.cert_status[0].hostname => h.cert_status[0].target
-  }
+  for_each = local.cert_status_map
 
   zone       = var.dns_zone
   recordtype = "CNAME"
   ttl        = 60
-  target     = [each.value]
-  name       = each.key
+  target     = [values(each.value)[0]]
+  name       = keys(each.value)[0]
 }

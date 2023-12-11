@@ -7,7 +7,6 @@ locals {
   global_name   = "tf.host.com"
   edge_hostname = "tf.host.com.edgesuite.net"
   hostnames     = ["tf.host.com", "tf-demo.host.com"]
-  dns_hostnames = ["tf-demo.host.com"]
   email         = "noreply@example.com"
 }
 
@@ -27,7 +26,7 @@ module "akamai_edgedns_records" {
   dns_zone      = local.global_name
   dns_zam       = local.global_name
   edge_hostname = local.edge_hostname
-  dns_hostnames = local.dns_hostnames
+  dns_hostnames = local.hostnames
   contract_id   = module.akamai_property.contract_id
   group_id      = module.akamai_property.group_id
   property_id   = module.akamai_property.property_id
