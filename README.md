@@ -49,7 +49,13 @@ Makes use of TF Modules which provide more flexibility for code reutilization an
     Onboards a domain to Akamai from scratch: creates certificate, edge hostname, property, dns records and application security configurations.
 
 ## 3. Declarative Rule Tree
-As of Akamai TF Provider version 3.5.0 (March 30th 2023) the property can be fully expressed in HCL (Hashicorp Configuration Language). This example shows its use in a TF modules approach.
+As of Akamai TF Provider version 3.5.0 (March 30th 2023) the property can be fully expressed in HCL (Hashicorp Configuration Language). 
+
+### 1. Declarative Property Manager
+An approach to managing an Akamai Property using the declarative syntax (all property rules, behaviors matches expressed in HCL) plus a structure that uses modules to split the `rules.tf` file into multiple more manageable files. No need to use modules for this though.
+
+### 2. Domains Secure by Default Onboard to Akamai
+Onboards multiple domains to Akamai from scratch: creates certificate with Secure by Default, edge hostnames, property, dns records and add the new hostnames to an existing application security configuration policy.
 
 ## Debugging
 For debugging you can enable the logging level: OFF, TRACE, DEBUG, INFO, WARN or ERROR. TRACE will give the Akamai outputs.
