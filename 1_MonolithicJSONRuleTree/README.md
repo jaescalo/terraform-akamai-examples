@@ -33,7 +33,7 @@ This is the simplest case where the rule tree is a single JSON file which contai
                     "cpCodeLimits": null,
                     "createdDate": 1442260495000,
                     "description": "ION CP Code",
-                    "id": 0000000,
+                    "id": 1234567,
                     "name": "ION CP Code",
                     "products": [
                         "Fresca",

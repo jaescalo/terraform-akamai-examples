@@ -10,6 +10,6 @@ module "property" {
   ]
   comments = "Managed by Terraform"
   origin = "origin.dev.host.com"
-  cpcode = "0000000"
+  cpcode = "1234567"
   contact = ["email@akamai.com"]
 }
