@@ -45,6 +45,7 @@ You can think of TF Workspaces as branches in a Git repository, where you could 
 
 ### 4. Terraform Modules
 Makes use of TF Modules which provide more flexibility for code reutilization and environment isolation.
+Modules in TF are pieces of code that can be reused by parameterizing them and calling them within our main Terraform code. By practice the modules are created in the `/modules/` folder and they look just like normal HCL.
 
 1. #### Same Rule Tree with Akamai Template
     Manage or onboard multiple properties that share the same rule tree structure onto Akamai by using the Akamai Terraform Provider's `akamai_property_rules_template` resource.
@@ -54,10 +55,6 @@ Makes use of TF Modules which provide more flexibility for code reutilization an
 
 3. #### Different Rule Tree with Terraform Templates
     Manage or onboard multiple properties that have a different rule trees onto Akamai by using the Terraform `template_file` resource instead of the Akamai Provider's `akamai_property_rules_template` resource. When using the `template_file` resource there's a bit more flexibility when building properties that differ in the rules. Also, the template file syntax will change and we'll call the file `main.tfjson` instead of the traditional `main.json`.
-
-
-
-    Modules in TF are pieces of code that can be reused by parameterizing them and calling them within our main Terraform code. By practice the modules are created in the `/modules/` folder and they look just like normal HCL.
 
 ## 3. Declarative Rule Tree
 As of Akamai TF Provider version 3.5.0 (March 30th 2023) the property can be fully expressed in HCL (Hashicorp Configuration Language). 
@@ -75,7 +72,7 @@ An approach to managing an Akamai Property using the declarative syntax (all pro
 ### 1. Property Secure by Default Onboard to Akamai
     Onboards a domain to Akamai from scratch: creates certificate with Secure by Default, edge hostname, property, dns records and application security configurations.
 
-### 2 Property Full Onboard to Akamai
+### 2. Property Full Onboard to Akamai
     Onboards a domain to Akamai from scratch: creates certificate, edge hostname, property, dns records and application security configurations.
 
 # Debugging
