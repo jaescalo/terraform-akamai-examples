@@ -1,4 +1,3 @@
-# Demo #2
 # Create a new property with TF by pointing to JSON Snippets 
 
 provider "akamai" {

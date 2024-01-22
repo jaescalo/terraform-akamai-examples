@@ -1,4 +1,3 @@
-# Demo #1
 # Create a new property with TF by pointing to a rule tree JSON file.
 
 provider "akamai" {
