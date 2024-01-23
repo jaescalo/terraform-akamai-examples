@@ -1,4 +1,3 @@
-# Demo #6
 # Use of Modules to Deploy Property and DNS Records with the Secure by Default challenges
 
 data "akamai_contract" "contract" {

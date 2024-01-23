@@ -62,6 +62,9 @@ As of Akamai TF Provider version 3.5.0 (March 30th 2023) the property can be ful
 ### 1. Single Environment
 The rule tree is fully expressed in HCL (Hashicorp Configuration Language)
 
+### 2. Multiple Environments
+The rule tree is fully expressed in HCL (Hashicorp Configuration Language) too, plus supports different environments using *.tfvars files. Additionaly there is logic that determines the type of origin (CUSTOMER | NETSTORAGE) to build the correct rule tree. This is one of the benefits of expressing the rule tree as HCL, it is easier to add more logic to the rule tree.
+
 # Onboarding
 Examples to fully onboard domains to Akamai with Property Manager, EdgeDNS, Application Security and CPS features.
 
