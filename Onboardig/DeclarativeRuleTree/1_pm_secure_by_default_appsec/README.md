@@ -3,7 +3,7 @@
 **Use Case:** Fully onboard a domain to Akamai incluiding the certificate creation (Secure by Default), edge hostname, cp code, property, DNS records and application security. In this particular example 2 hostnames are onboarded which presents an additional challenge to the configuration because of the need of reusing the code to create and validate DNS records.
 
 ## Property Manager Provider
-Use for creating new Edge Hostnames, CP Codes and of course new Properties. The property is also expressed fully in HCL (no longer JSON snippet dependencies). This was a featured introduced early in 2023. 
+Creates new Edge Hostnames, CP Codes and of course new Properties. The property is also expressed fully in HCL (no longer JSON snippet dependencies). This was a featured introduced early in 2023. 
 The [Akamai Terraform CLI](https://github.com/akamai/cli-terraform) can also generate all of the necessary `*.tf` files and import script. Therefore if you have a golden configuration already on Akamai you can just use it to build the base for your code.
 
 ### The Certificates

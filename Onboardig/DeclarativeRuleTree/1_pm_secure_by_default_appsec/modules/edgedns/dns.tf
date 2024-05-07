@@ -69,7 +69,7 @@ resource "akamai_dns_record" "my_dns_hostnames" {
 locals {
   cert_status_map = {
     for idx, hostname in var.dns_hostnames : hostname => {
-      data.akamai_property_hostnames.wingmanstrums_hostnames.hostnames[idx].cert_status[0].hostname = data.akamai_property_hostnames.wingmanstrums_hostnames.hostnames[idx].cert_status[0].target
+      data.akamai_property_hostnames.my_hostnames.hostnames[idx].cert_status[0].hostname = data.akamai_property_hostnames.my_hostnames.hostnames[idx].cert_status[0].target
     }
   }
 }
