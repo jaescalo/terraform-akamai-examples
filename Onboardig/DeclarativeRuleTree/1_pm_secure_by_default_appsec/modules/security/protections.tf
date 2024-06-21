@@ -20,7 +20,7 @@ resource "akamai_appsec_ip_geo_protection" "my_policy" {
 resource "akamai_appsec_malware_protection" "my_policy" {
   config_id          = akamai_appsec_configuration.config.config_id
   security_policy_id = akamai_appsec_ip_geo_protection.my_policy.security_policy_id
-  enabled            = true
+  enabled            = false
 }
 
 resource "akamai_appsec_rate_protection" "my_policy" {

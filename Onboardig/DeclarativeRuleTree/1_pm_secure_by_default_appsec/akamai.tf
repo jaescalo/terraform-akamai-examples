@@ -13,12 +13,17 @@ locals {
 module "akamai_property" {
   source             = "./modules/property"
   group_name         = "My Group"
-  product_id         = "Fresca"
+  product_id         = "prd_Fresca"
   cp_code_name       = "tf-demo.host.com"
   edge_hostname      = local.edge_hostname
   property_name      = local.global_name
   property_hostnames = local.hostnames
   email              = local.email
+  origin_server      = "origin-tf.aiqbal.com"
+  certificate_enrollment_id = 123456
+  cert_provisioning_type = "CPS_MANAGED"
+  activate_in_staging = true
+  activate_in_production = false
 }
 
 module "akamai_edgedns_records" {
@@ -41,7 +46,7 @@ module "security" {
   hostnames   = local.hostnames
   name        = "tf-demo-appsec-configuration"
   description = "Spin up configuration via Terraform"
-  contract_id = module.akamai_property.contract_id
+  contract_id = trimprefix(module.akamai_property.contract_id, "ctr_")
   group_name  = "My Group"
   depends_on = [
     module.akamai_property
@@ -52,7 +57,7 @@ module "activate-security" {
   source              = "./modules/activate-security"
   name                = "tf-demo-appsec-configuration"
   config_id           = module.security.config_id
-  network             = "PRODUCTION"
+  network             = "STAGING"
   notification_emails = [local.email]
   note                = "AppSec configuration deployed with the Akamai Terraform Provider."
   depends_on = [

@@ -17,6 +17,7 @@ resource "akamai_edge_hostname" "my_edge_hostname" {
   group_id      = data.akamai_contract.contract.group_id
   ip_behavior   = "IPV6_COMPLIANCE"
   edge_hostname = var.edge_hostname
+  certificate   = var.certificate_enrollment_id
 }
 
 
@@ -24,14 +25,14 @@ resource "akamai_property" "my_property" {
   name        = var.property_name
   contract_id = data.akamai_contract.contract.id
   group_id    = data.akamai_contract.contract.group_id
-  product_id  = "prd_Fresca"
+  product_id  = var.product_id
 
   dynamic "hostnames" {
     for_each = var.property_hostnames
     content {
       cname_from             = hostnames.value
       cname_to               = akamai_edge_hostname.my_edge_hostname.edge_hostname
-      cert_provisioning_type = "DEFAULT"
+      cert_provisioning_type = var.cert_provisioning_type
     }
   }
 
@@ -44,7 +45,7 @@ resource "akamai_property_activation" "my_property-staging" {
   contact                        = [var.email]
   version                        = akamai_property.my_property.latest_version
   network                        = "STAGING"
-  auto_acknowledge_rule_warnings = true
+  auto_acknowledge_rule_warnings = var.activate_in_staging
 }
 
 resource "akamai_property_activation" "my_property-production" {
@@ -52,7 +53,7 @@ resource "akamai_property_activation" "my_property-production" {
   contact                        = [var.email]
   version                        = akamai_property.my_property.latest_version
   network                        = "PRODUCTION"
-  auto_acknowledge_rule_warnings = true
+  auto_acknowledge_rule_warnings = var.activate_in_production
 
   compliance_record {
     noncompliance_reason_no_production_traffic {
