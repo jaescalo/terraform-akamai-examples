@@ -1,0 +1,1 @@
+terraform import module.akamai_edgedns.akamai_dns_zone.tf_demo_zone tf-demo.com

@@ -1,0 +1,5 @@
+terraform import module.akamai_property.akamai_cp_code.cp_code cpc_1662022,ctr_1-1NC95D,grp_257477
+terraform import module.akamai_property.akamai_edge_hostname.my_edge_hostname ehn_5656596,ctr_1-1NC95D,grp_257477
+terraform import module.akamai_property.akamai_property.my_property prp_1072446,ctr_1-1NC95D,grp_257477,LATEST
+terraform module.akamai_property.akamai_property_activation.my_property_activation_staging prp_1073104:STAGING
+terraform module.akamai_property.akamai_property_activation.my_property_activation_production prp_1073104:PRODUCTION

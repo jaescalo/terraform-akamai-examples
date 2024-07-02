@@ -1,6 +1,9 @@
 # My Exceptions
 .DS_Store
 snippets-logs.log
+.env
+backend
+CA/
 
 # Local .terraform directories
 **/.terraform/*
@@ -8,6 +11,9 @@ snippets-logs.log
 # .tfstate files
 *.tfstate
 *.tfstate.*
+
+# TF lock files
+*.lock.hcl
 
 # Crash log files
 crash.log
