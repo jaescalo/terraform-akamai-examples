@@ -4,6 +4,8 @@ snippets-logs.log
 .env
 backend
 CA/
+archive/
+certificates/
 
 # Local .terraform directories
 **/.terraform/*

@@ -374,7 +374,7 @@ data "akamai_property_rules_builder" "my_property_rule_prefetchable_objects" {
       file_extension {
         match_case_sensitive = false
         match_operator       = "IS_ONE_OF"
-        values               = ["css", "js", "jpg", "jpeg", "jp2", "png", "gif", "svg", "svgz", "webp", "eot", "woff", "woff2", "otf", ]
+        values               = ["mp4", "css", "js", "jpg", "jpeg", "jp2", "png", "gif", "svg", "svgz", "webp", "eot", "woff", "woff2", "otf", ]
       }
     }
     behavior {

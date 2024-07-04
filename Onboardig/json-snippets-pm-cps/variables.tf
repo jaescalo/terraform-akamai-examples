@@ -1,3 +1,10 @@
+# Environment variables (TF_VAR_*)
+variable "akamai_client_secret" {}
+variable "akamai_host" {}
+variable "akamai_access_token" {}
+variable "akamai_client_token" {}
+variable "akamai_account_key" {}
+
 # Variables common to 2 or more modules
 variable "group_name" {}
 variable "edge_hostname" {}
