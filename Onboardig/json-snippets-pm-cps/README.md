@@ -1,6 +1,6 @@
-# Domain Full Onboard to Akamai
+# Domain Onboard to Akamai
 
-**Use Case:** Fully onboard a domain to Akamai incluiding the certificate creation, edge hostname, cp code, property, DNS records and application security.
+**Use Case:** Fully onboard a domain to Akamai including the certificate creation, edge hostname, cp code, property, DNS records and application security.
 
 All of the required parameters for this flow should be added/replaced in the `terraform.tfvars` file, unless of course you want to modify the flow then you can edit any of the other `*.tf` files.
 
@@ -24,8 +24,3 @@ Alternatively, the [Akamai Terraform CLI](https://github.com/akamai/cli-terrafor
 
 ## Edge DNS Provider
 This example uses Akamai Edge DNS as the DNS provider to create the necessary CNAME record to point the new domain to an Akamai Edge Hostname (*.edgekey.net) on the PCI compliant secure network.
-
-### Import
-The `import.sh` file can be used as a reference on how to import existing resources in Akamai into Terraform state. Note that in this example only the Application Security Configuration is imported as you will commonly have one configuration where you will add all the domains to. This configuration can have multiple policies though.
-
-Because the security configuration exists on Akamai we need to import it to Terraform and this is done with the `terraform import` command. Check the `import.sh` file for an example. This should be the very first step before you run any `terraform plan/apply`.
