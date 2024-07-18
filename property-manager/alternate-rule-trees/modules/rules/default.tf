@@ -8,6 +8,7 @@ locals {
         data.akamai_property_rules_builder.my_property_rule_strengthen_security.json,
         #data.akamai_property_rules_builder.my_property_rule_increase_availability.json,
         data.akamai_property_rules_builder.my_property_rule_minimize_payload.json,
+        data.akamai_property_rules_builder.my_property_rule_data_stream.json,
       ],
       qa = [
         data.akamai_property_rules_builder.my_property_rule_augment_insights.json,
@@ -16,6 +17,7 @@ locals {
         data.akamai_property_rules_builder.my_property_rule_strengthen_security.json,
         data.akamai_property_rules_builder.my_property_rule_increase_availability.json,
         data.akamai_property_rules_builder.my_property_rule_minimize_payload.json,
+        data.akamai_property_rules_builder.my_property_rule_data_stream.json,
       ],
       test = [
         data.akamai_property_rules_builder.my_property_rule_augment_insights.json,
@@ -24,6 +26,7 @@ locals {
         data.akamai_property_rules_builder.my_property_rule_strengthen_security.json,
         data.akamai_property_rules_builder.my_property_rule_increase_availability.json,
         data.akamai_property_rules_builder.my_property_rule_minimize_payload.json,
+        data.akamai_property_rules_builder.my_property_rule_data_stream.json,
       ],
       default = [
         data.akamai_property_rules_builder.my_property_rule_augment_insights.json,
@@ -32,6 +35,7 @@ locals {
         data.akamai_property_rules_builder.my_property_rule_strengthen_security.json,
         data.akamai_property_rules_builder.my_property_rule_increase_availability.json,
         data.akamai_property_rules_builder.my_property_rule_minimize_payload.json,
+        data.akamai_property_rules_builder.my_property_rule_data_stream.json,
       ]
     }
 }

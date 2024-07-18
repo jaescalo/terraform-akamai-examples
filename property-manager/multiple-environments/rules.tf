@@ -30,6 +30,8 @@ data "akamai_property_rules_builder" "my_property_rule_default" {
       data.akamai_property_rules_builder.my_property_rule_strengthen_security.json,
       data.akamai_property_rules_builder.my_property_rule_increase_availability.json,
       data.akamai_property_rules_builder.my_property_rule_minimize_payload.json,
+      data.akamai_property_rules_builder.my_property_rule_data_stream.json,
+
     ]
   }
 }
@@ -835,6 +837,23 @@ data "akamai_property_rules_builder" "my_property_rule_compressible_objects" {
     behavior {
       gzip_response {
         behavior = "ALWAYS"
+      }
+    }
+  }
+}
+
+data "akamai_property_rules_builder" "my_property_rule_data_stream" {
+  rules_v2024_02_12 {
+    name                  = "DataStream SumoLogic"
+    criteria_must_satisfy = "all"
+    behavior {
+      datastream {
+        collect_midgress_traffic = true
+        log_enabled              = true
+        log_stream_name          = ["73500", ]
+        log_stream_title         = ""
+        sampling_percentage      = 100
+        stream_type              = "LOG"
       }
     }
   }
