@@ -17,11 +17,11 @@ resource "akamai_edge_hostname" "my_edge_hostname" {
   edge_hostname = var.edge_hostname
   certificate   = var.certificate
   # For some reason when the edge hostname is imported and we keep the product_id argument it thinks we want to modify it
-  lifecycle {
-    ignore_changes = [
-      product_id,
-    ]
-  }
+    lifecycle {
+      ignore_changes = [
+        product_id,
+      ]
+    }
 }
 
 module "rule_tree" {

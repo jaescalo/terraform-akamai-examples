@@ -1,0 +1,2 @@
+terraform init
+terraform import akamai_edgekv.edgekv jaescalo:staging
