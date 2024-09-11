@@ -9,7 +9,6 @@ These are some example on how the Akamai Terraform provider can be used to onboa
 - [Akamai Property Manager CLI](https://github.com/akamai/cli-property-manager)
 - The examples assume the CP Codes are available before hand because the intention is to manage existing resources on Akamai. However in an onboarding scenario you'll want to create the new CP Codes in the TF code.
 
-
 ## State File Management
 Most of these examples assume a remote backend is configured for storing the state file. The state file may be renamed differently based on the environment or application to deploy (e.g. `dev-terraform.tfstate`, `qa-terraform.tfstate`) to prevent overwriting the state file for each environment or application.
 
@@ -49,9 +48,14 @@ Additionally you can set the path of the log with the `TF_LOG_PATH` variable:
 `$ export TF_LOG_PATH=./akamai.log`
 
 ## Akamai as Code and Terraform Best Practices
-- **Version Control**: treat Akamai as Code as you would with any of your current applications. This entails the version control repository or preference, access policies, security policies, collaboration, branching and merging schemas.
 
-- **Credentials**: the permissions you need for the Akamai Provider depend on the subset of Akamai resources and data sources you'll use (i.e. EdgeDNS, Appsec, Property Manager, etc). Without these permissions, your Terraform configurations won't execute. Additionally API credential permissions can be assigned on a per group or user basis and set to read or read/write mode.
+falta PM adv mdt 
+falta locking 
+
+
+- **Version Control**: treat Akamai as Code as you would with any of your current applications. This entails the version control repository or preference, access policies, security postures, collaboration, branching and merging schemas.
+
+- **Credentials**: the permissions you need for the Akamai Provider depend on the subset of Akamai resources and data sources you'll use (i.e. EdgeDNS, Appsec, Property Manager, etc). Without these permissions, your Terraform configurations won't execute. Additionally API credential permissions can be assigned on a per group or user basis and set to read or read/write mode. Service credentials can also be created.
 
 - **Golden Configurations & Code Reutilization**: some use cases such as onboardings can benefit from parameterized golden configurations that can be reused to spin up new domains and applications. 
 
@@ -71,6 +75,19 @@ Additionally you can set the path of the log with the `TF_LOG_PATH` variable:
     - **Specific to Property-Manager**: assign the most recent dated `rule_format` (i.e. v2023-01-05) in any API driven workflow. Otherwise, if you assign the `latest` rule format to your rule tree, features update automatically to their most recent version. This may abruptly result in errors if JSON objects your rules specify no longer comply with the most recent feature's set of requirements.
 
 - **Terraform State File**: for security and collaboration reasons storing the state file in your version control repository is not a good practice and instead you should use a remote backend. Some remote backends support collaboration, locking, encryption and other features. Always check [Hashicorp's documentation](https://developer.hashicorp.com/terraform/cdktf/concepts/remote-backends) for the list of supported remote backends.
+
+- **Lifecycle Ignore**: for arguments that may change frequently (e.g. activation notes which include the commit ID, which should not trigger an activation on every commit) and should not be considered as a change use the Terraform lifecycle:
+    ```
+    lifecycle {
+        ignore_changes = [
+            version_notes,
+        ]
+    }
+    ```
+
+- **Advanced Metadata**: any advanced metadata (XML) must be refactored to conditions and behaviors that the UI supports. 
+    - Property Manager: refactor to Property Manager conditionals and behaviors. If this is not possible then create a custom behavior for the advanced XML.
+    - WAF: in the case of custom rules these don't need to be added to the TF code and instead the ID can be referenced in other parts of the code.
 
 - [Best Practices for Terraform by Google](https://cloud.google.com/docs/terraform/best-practices-for-terraform): great writing on overall TF practices for syntax, collaboration, code optimization and reutilization. 
 
