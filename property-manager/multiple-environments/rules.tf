@@ -31,7 +31,7 @@ data "akamai_property_rules_builder" "my_property_rule_default" {
       data.akamai_property_rules_builder.my_property_rule_increase_availability.json,
       data.akamai_property_rules_builder.my_property_rule_minimize_payload.json,
       data.akamai_property_rules_builder.my_property_rule_data_stream.json,
-
+      
     ]
   }
 }
@@ -77,7 +77,6 @@ data "akamai_property_rules_builder" "my_property_rule_offload_origin" {
     behavior {
       tiered_distribution {
         enabled                 = true
-        tiered_distribution_map = "CH2"
       }
     }
     behavior {
@@ -388,7 +387,7 @@ data "akamai_property_rules_builder" "my_property_rule_bots" {
         match_case_sensitive = false
         match_operator       = "IS_ONE_OF"
         match_wildcard       = true
-        values               = ["*bot*", "*crawl*", "*spider*", ]
+        values               = ["*bot*", "*crawl*", "*spider*"]
       }
     }
     behavior {
