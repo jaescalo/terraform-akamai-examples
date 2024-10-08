@@ -1,4 +1,4 @@
-
+# Each env should be imported separately when using one state file per env
 terraform init
 # DEV
 terraform import 'akamai_cp_code.cp_code["dev"]' cpc_1662022,ctr_1-1NC95D,grp_257477
