@@ -10,6 +10,15 @@ variable "akamai_account_key" {}
 # Common Variables 
 # -------------------------------------------------
 
+variable "environment" {
+  description = "Environment (dev, qa, test)"
+  type        = string
+  validation {
+    condition     = contains(["dev", "qa", "test"], var.environment)
+    error_message = "Environment must be dev, qa, or test."
+  }
+}
+
 variable "group_name" {
   description = "Akamai Group Name"
   type        = string

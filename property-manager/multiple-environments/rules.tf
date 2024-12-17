@@ -412,7 +412,7 @@ data "akamai_property_rules_builder" "my_property_rule_css_and_java_script" {
     }
     behavior {
       caching {
-        behavior        = "MAX_AGE"
+        behavior        = var.environment == "dev" ? "NO_STORE" : "MAX_AGE"
         must_revalidate = false
         ttl             = "7d"
       }

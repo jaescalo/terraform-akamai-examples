@@ -1,5 +1,6 @@
 # Common Variables
 
+environment = "dev"
 group_name  = "Demos - Templates"
 email       = "noreply@akamai.com"
 

@@ -1,6 +1,6 @@
 # My Exceptions
 .DS_Store
-snippets-logs.log
+*.log
 .env
 backend
 CA/
