@@ -153,6 +153,10 @@ variable "custom_bad_user_agent_action" {
   description = "Action for custom rule: Bad User Agent"
   type        = string
 }
+variable "custom_bad_user_agent_2_action" {
+  description = "Action for custom rule: Bad User Agent 2"
+  type        = string
+}
 
 # Web Application Firewall (WAF) Actions
 variable "waf_policy_action" {

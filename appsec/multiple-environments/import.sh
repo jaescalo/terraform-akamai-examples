@@ -8,8 +8,13 @@ terraform import -var-file=./environments/dev.tfvars module.security.akamai_apps
 terraform import -var-file=./environments/dev.tfvars module.security.akamai_appsec_advanced_settings_pii_learning.pii_learning 103403
 terraform import -var-file=./environments/dev.tfvars module.security.akamai_appsec_advanced_settings_request_body.config_settings 103403
 terraform import -var-file=./environments/dev.tfvars module.security.akamai_appsec_custom_rule.bad_user_agent_60286964 103403:60286964
+
+
+terraform import -var-file=./environments/dev.tfvars module.security.akamai_appsec_custom_rule.bad_user_agent_2_60287283 103403:60287283
 terraform import -var-file=./environments/dev.tfvars module.security.akamai_appsec_custom_rule_action.tfdemo_bad_user_agent 103403:TF01_265899:60286964
+terraform import -var-file=./environments/dev.tfvars module.security.akamai_appsec_custom_rule_action.tfdemo_bad_user_agent_2 103403:TF01_265899:60287283
 terraform import -var-file=./environments/dev.tfvars 'module.security.akamai_appsec_custom_rule_action.custom_rules["60286975"]' 103403:TF01_265899:60286975
+terraform import -var-file=./environments/dev.tfvars 'module.security.akamai_appsec_custom_rule_action.custom_rules["60287284"]' 103403:TF01_265899:60287284
 terraform import -var-file=./environments/dev.tfvars module.security.akamai_appsec_match_target.website_8232297 103403:8232297
 terraform import -var-file=./environments/dev.tfvars module.security.akamai_appsec_security_policy.tfdemo 103403:TF01_265899
 terraform import -var-file=./environments/dev.tfvars module.security.akamai_appsec_waf_protection.tfdemo 103403:TF01_265899

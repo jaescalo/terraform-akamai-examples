@@ -38,6 +38,7 @@ variable "slow_post_action" {}
 # Custom Rule Actions
 variable "custom_rules_by_id" {}
 variable "custom_bad_user_agent_action" {}
+variable "custom_bad_user_agent_2_action" {}
 
 # Web Application Firewall (WAF) Actions
 variable "waf_policy_action" {}

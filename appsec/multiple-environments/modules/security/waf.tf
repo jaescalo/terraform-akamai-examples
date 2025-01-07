@@ -19,6 +19,13 @@ resource "akamai_appsec_custom_rule_action" "tfdemo_bad_user_agent" {
   config_id          = akamai_appsec_configuration.config.config_id
   security_policy_id = akamai_appsec_waf_protection.tfdemo.security_policy_id
   custom_rule_id     = akamai_appsec_custom_rule.bad_user_agent_60286964.custom_rule_id
+  custom_rule_action = var.custom_bad_user_agent_2_action
+}
+
+resource "akamai_appsec_custom_rule_action" "tfdemo_bad_user_agent_2" {
+  config_id          = akamai_appsec_configuration.config.config_id
+  security_policy_id = akamai_appsec_waf_protection.tfdemo.security_policy_id
+  custom_rule_id     = akamai_appsec_custom_rule.bad_user_agent_2_60287283.custom_rule_id
   custom_rule_action = var.custom_bad_user_agent_action
 }
 

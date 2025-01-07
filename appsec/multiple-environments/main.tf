@@ -41,8 +41,9 @@ module "security" {
   slow_post_action              = var.slow_post_action
 
   # Custom Rule Actions
-  custom_rules_by_id           = var.custom_rules_by_id
-  custom_bad_user_agent_action = var.custom_bad_user_agent_action
+  custom_rules_by_id             = var.custom_rules_by_id
+  custom_bad_user_agent_action   = var.custom_bad_user_agent_action
+  custom_bad_user_agent_2_action = var.custom_bad_user_agent_2_action
 
   # Web Application Firewall (WAF) Actions
   waf_policy_action   = var.waf_policy_action

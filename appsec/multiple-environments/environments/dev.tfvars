@@ -1,7 +1,7 @@
 # Common Variables
 environment     = "dev"
 group_name      = "Demos - Templates"
-config_name     = "tf-demo-appsec"
+config_name     = "dev-tf-demo-appsec"
 description     = "Application security configuration"
 hostnames       = ["dev.tf-demo.com"]
 emails          = ["noreply@akamai.com"]
@@ -41,8 +41,10 @@ slow_post_action              = "abort"
 # Custom Rule Actions
 custom_rules_by_id = {
   "60286975" = "alert" # Rule Name: Suspicious User Agent
+  "60287284" = "deny"  # Rule Name: Suspicious User Agent 2
 }
-custom_bad_user_agent_action = "deny"
+custom_bad_user_agent_action   = "deny"
+custom_bad_user_agent_2_action = "deny"
 
 # Web Application Firewall (WAF) Actions
 waf_policy_action   = "deny"
