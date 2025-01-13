@@ -72,7 +72,7 @@ variable "enable_rate" {
   description = "Enable Rate Protection"
   type        = bool
 }
-variable "enable_reputation" {
+variable "enable_client_reputation" {
   description = "Enable Client Reputation Protection"
   type        = bool
 }

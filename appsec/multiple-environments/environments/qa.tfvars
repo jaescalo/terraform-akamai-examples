@@ -14,7 +14,7 @@ enable_request_constraints = true
 enable_ip_geo              = true
 enable_malware             = true
 enable_rate                = true
-enable_reputation          = true
+enable_client_reputation   = true
 enable_slow_post           = true
 enable_botman              = true
 

@@ -45,10 +45,6 @@ variable "enable_rate" {
   description = "Enable Rate Protection"
   type        = bool
 }
-variable "enable_reputation" {
-  description = "Enable Client Reputation Protection"
-  type        = bool
-}
 variable "enable_slow_post" {
   description = "Enable Slow POST Protection"
   type        = bool
@@ -165,40 +161,6 @@ variable "waf_platform_action" {
 }
 variable "penalty_box_action" {
   description = "Action for WAF Penalty Box"
-  type        = string
-}
-
-# Client Reputation Actions
-variable "rep_web_attackers_high" {
-  description = "Action for Reputation Profile:  Web Attackers (High Threat)"
-  type        = string
-}
-variable "rep_dos_attackers_high" {
-  description = "Action for Reputation Profile: DoS Attackers (High Threat)"
-  type        = string
-}
-variable "rep_scanning_tools_high" {
-  description = "Action for Reputation Profile: Scanning Tools (High Threat)"
-  type        = string
-}
-variable "rep_web_attackers_low" {
-  description = "Action for Reputation Profile: Web Attackers (Low Threat)"
-  type        = string
-}
-variable "rep_dos_attackers_low" {
-  description = "Action for Reputation Profile: DoS Attackers (Low Threat)"
-  type        = string
-}
-variable "rep_scanning_tools_low" {
-  description = "Action for Reputation Profile: Scanning Tools (Low Threat)"
-  type        = string
-}
-variable "rep_web_scrapers_low" {
-  description = "Action for Reputation Profile: Web Scrapers (Low Threat)"
-  type        = string
-}
-variable "rep_web_scrapers_high" {
-  description = "Action for Reputation Profile: Web Scrapers (High Threat)"
   type        = string
 }
 

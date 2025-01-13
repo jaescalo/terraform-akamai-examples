@@ -16,7 +16,6 @@ module "security" {
   enable_ip_geo              = var.enable_ip_geo
   enable_malware             = var.enable_malware
   enable_rate                = var.enable_rate
-  enable_reputation          = var.enable_reputation
   enable_slow_post           = var.enable_slow_post
 
   # Global advanced settings
@@ -55,6 +54,14 @@ module "security" {
   waf_rfi_action      = var.waf_rfi_action
   waf_platform_action = var.waf_platform_action
   penalty_box_action  = var.penalty_box_action
+}
+
+module "client-reputation" {
+  count = var.enable_client_reputation ? 1 : 0
+
+  source             = "./modules/client-reputation"
+  config_id          = module.security.config_id
+  security_policy_id = module.security.security_policy_id
 
   # Client Reputation Actions
   rep_web_attackers_high  = var.rep_web_attackers_high
