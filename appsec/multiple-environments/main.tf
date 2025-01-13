@@ -18,7 +18,6 @@ module "security" {
   enable_rate                = var.enable_rate
   enable_reputation          = var.enable_reputation
   enable_slow_post           = var.enable_slow_post
-  enable_botman              = var.enable_botman
 
   # Global advanced settings
   pragma_header_name  = var.pragma_header_name
@@ -66,6 +65,20 @@ module "security" {
   rep_scanning_tools_low  = var.rep_scanning_tools_low
   rep_web_scrapers_low    = var.rep_web_scrapers_low
   rep_web_scrapers_high   = var.rep_web_scrapers_high
+}
+
+module "bot-manager" {
+  count = var.enable_bot_management ? 1 : 0
+
+  source             = "./modules/bot-manager"
+  config_id          = module.security.config_id
+  security_policy_id = module.security.security_policy_id
+
+  add_akamai_bot_header     = var.add_akamai_bot_header
+  enable_active_detections  = var.enable_active_detections
+  enable_browser_validation = var.enable_browser_validation
+  remove_botman_cookies     = var.remove_botman_cookies
+  third_party_proxy         = var.third_party_proxy
 
   # Bot Category Actions
   bot_site_monitoring_and_web_development = var.bot_site_monitoring_and_web_development
@@ -106,6 +119,7 @@ module "security" {
   bot_javascript_fingerprint_anomaly                = var.bot_javascript_fingerprint_anomaly
   bot_javascript_fingerprint_not_received           = var.bot_javascript_fingerprint_not_received
 
+  depends_on = [module.security]
 }
 
 module "activate-security" {
@@ -115,5 +129,8 @@ module "activate-security" {
   network             = var.network
   notification_emails = var.emails
   note                = var.activation_note
-  depends_on          = [module.security]
+  depends_on = [
+    module.security,
+    module.bot-manager
+  ]
 }

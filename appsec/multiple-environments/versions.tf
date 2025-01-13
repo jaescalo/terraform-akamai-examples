@@ -9,6 +9,6 @@ terraform {
       version = "= 2.23.0"
     }
   }
-  required_version = "= 1.9.0"
+  required_version = ">= 1.9.0"
   backend "s3" {}
 }

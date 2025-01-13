@@ -80,7 +80,7 @@ variable "enable_slow_post" {
   description = "Enable Slow POST Protection"
   type        = bool
 }
-variable "enable_botman" {
+variable "enable_bot_management" {
   description = "Enable Bot Management Protection"
   type        = bool
 }
@@ -232,6 +232,28 @@ variable "rep_web_scrapers_low" {
 variable "rep_web_scrapers_high" {
   description = "Action for Reputation Profile: Web Scrapers (High Threat)"
   type        = string
+}
+
+# Bot Manager General Settings
+variable "add_akamai_bot_header" {
+  description = "Adds a header named Akamai-Bot to bot request forwarded to the origin. The header contains details like: bot type, Botnet ID, action, detection method, and bot score details, if applicable"
+  type        = bool
+}
+variable "enable_active_detections" {
+  description = "These methods interact with the requesting client using a combination of JavaScript and cookies to try to confirm that the request comes from a human using a real web browser"
+  type        = bool
+}
+variable "enable_browser_validation" {
+  description = "Confirm that requests come from a browser. Enable use browser validation detection anywhere you expect browsers to visit the URL"
+  type        = bool
+}
+variable "remove_botman_cookies" {
+  description = "Remove Bot Manager cookies before sending request to origin"
+  type        = bool
+}
+variable "third_party_proxy" {
+  description = "If you use a third-party proxy service between two Akamai Edge servers for things like A/B testing, content translation, or content adaption engines, turn this on to improve detection accuracy"
+  type        = bool
 }
 
 # Bot Category Actions

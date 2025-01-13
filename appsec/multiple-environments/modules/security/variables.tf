@@ -1,106 +1,206 @@
+# -------------------------------------------------
 # Common Variables 
-variable "config_name" {}
-variable "hostnames" {}
-variable "description" {}
-variable "contract_id" {}
-variable "group_name" {}
+# -------------------------------------------------
+variable "contract_id" {
+  description = "Akamai Contract ID"
+  type        = string
+}
+variable "group_name" {
+  description = "Akamai Group Name"
+  type        = string
+}
+variable "config_name" {
+  description = "Security configuration name"
+  type        = string
+}
+variable "description" {
+  default = "Security configuration description"
+  type    = string
+}
+variable "hostnames" {
+  description = "Hostnames to protect by the security config"
+  type        = list(string)
+}
 
+# -------------------------------------------------
 # Protections
-variable "enable_waf" {}
-variable "enable_request_constraints" {}
-variable "enable_ip_geo" {}
-variable "enable_malware" {}
-variable "enable_rate" {}
-variable "enable_reputation" {}
-variable "enable_slow_post" {}
-variable "enable_botman" {}
-
+# -------------------------------------------------
+variable "enable_waf" {
+  description = "Enable Web Application Firewall Protection"
+  type        = bool
+}
+variable "enable_request_constraints" {
+  description = "Enable API Requests Constraints Protection"
+  type        = bool
+}
+variable "enable_ip_geo" {
+  description = "Enable IP/Geo Firewall Protection"
+  type        = bool
+}
+variable "enable_malware" {
+  description = "Enable Malware Protection"
+  type        = bool
+}
+variable "enable_rate" {
+  description = "Enable Rate Protection"
+  type        = bool
+}
+variable "enable_reputation" {
+  description = "Enable Client Reputation Protection"
+  type        = bool
+}
+variable "enable_slow_post" {
+  description = "Enable Slow POST Protection"
+  type        = bool
+}
+# -------------------------------------------------
 # Global advanced settings
-variable "pragma_header_name" {}
-variable "pragma_header_value" {}
+# -------------------------------------------------
+variable "pragma_header_name" {
+  description = "Name for the header to match to expose pragma headers"
+  type        = string
+}
+variable "pragma_header_value" {
+  description = "Value for the header to match to expose pragma headers"
+  type        = string
+}
 
+# -------------------------------------------------
 # Specifics for the Security Policy
+# -------------------------------------------------
 # Security Policy Details
-variable "policy_name" {}
-variable "policy_prefix" {}
+variable "policy_name" {
+  description = "Name for the security policy"
+  type        = string
+}
+variable "policy_prefix" {
+  description = "Prefix for the security policy"
+  type        = string
+}
 
 # IP/Geo Firewall
-variable "ip_network_lists" {}
-variable "geo_network_lists" {}
-variable "exception_ip_network_lists" {}
+variable "ip_network_lists" {
+  description = "List or IP Client/Network lists"
+  type        = list(string)
+}
+variable "geo_network_lists" {
+  description = "List of Geo Client/Network lists"
+  type        = list(string)
+}
+variable "exception_ip_network_lists" {
+  description = "List of block exceptions"
+  type        = list(string)
+}
 
 # Dos Protection
-variable "dos_origin_error_action" {}
-variable "dos_post_page_requests_action" {}
-variable "dos_page_view_requests_action" {}
-variable "slow_post_action" {}
+variable "dos_origin_error_action" {
+  description = "Action for the Origin Error"
+  type        = string
+}
+variable "dos_post_page_requests_action" {
+  description = "Action for the POST Page Requests"
+  type        = string
+}
+variable "dos_page_view_requests_action" {
+  description = "Action for the Page View Requests"
+  type        = string
+}
+variable "slow_post_action" {
+  description = "Action for the slow POST Protection"
+  type        = string
+}
+
+# Custom Rule Actions by ID (commonly for XML rules)
+variable "custom_rules_by_id" {
+  description = "Map of custom rule IDs to their corresponding actions"
+  type        = map(string)
+}
 
 # Custom Rule Actions
-variable "custom_rules_by_id" {}
-variable "custom_bad_user_agent_action" {}
-variable "custom_bad_user_agent_2_action" {}
+variable "custom_bad_user_agent_action" {
+  description = "Action for custom rule: Bad User Agent"
+  type        = string
+}
+variable "custom_bad_user_agent_2_action" {
+  description = "Action for custom rule: Bad User Agent 2"
+  type        = string
+}
 
 # Web Application Firewall (WAF) Actions
-variable "waf_policy_action" {}
-variable "waf_wat_action" {}
-variable "waf_protocol_action" {}
-variable "waf_sql_action" {}
-variable "waf_xss_action" {}
-variable "waf_cmd_action" {}
-variable "waf_lfi_action" {}
-variable "waf_rfi_action" {}
-variable "waf_platform_action" {}
-variable "penalty_box_action" {}
+variable "waf_policy_action" {
+  description = "Action for WAF attack group: Web Policy Violation"
+  type        = string
+}
+variable "waf_wat_action" {
+  description = "Action for WAF attack group: Web Attack Tool"
+  type        = string
+}
+variable "waf_protocol_action" {
+  description = "Action for WAF attack group: Web Protocol Attack"
+  type        = string
+}
+variable "waf_sql_action" {
+  description = "Action for WAF attack group: SQL Injection"
+  type        = string
+}
+variable "waf_xss_action" {
+  description = "Action for WAF attack group: Cross Site Scripting"
+  type        = string
+}
+variable "waf_cmd_action" {
+  description = "Action for WAF attack group: Command Injection"
+  type        = string
+}
+variable "waf_lfi_action" {
+  description = "Action for WAF attack group: Local File Inclusion"
+  type        = string
+}
+variable "waf_rfi_action" {
+  description = "Action for WAF attack group: Remote File Inclusion"
+  type        = string
+}
+variable "waf_platform_action" {
+  description = "Action for WAF attack group: Web Platform Attack"
+  type        = string
+}
+variable "penalty_box_action" {
+  description = "Action for WAF Penalty Box"
+  type        = string
+}
 
 # Client Reputation Actions
-variable "rep_web_attackers_high" {}
-variable "rep_dos_attackers_high" {}
-variable "rep_scanning_tools_high" {}
-variable "rep_web_attackers_low" {}
-variable "rep_dos_attackers_low" {}
-variable "rep_scanning_tools_low" {}
-variable "rep_web_scrapers_low" {}
-variable "rep_web_scrapers_high" {}
-
-# Bot Category Actions
-variable "bot_site_monitoring_and_web_development" {}
-variable "bot_academic_or_research" {}
-variable "bot_job_search_engine" {}
-variable "bot_artificial_intelligence_ai" {}
-variable "bot_online_advertising" {}
-variable "bot_ecommerce_search_engine" {}
-variable "bot_web_search_engine" {}
-variable "bot_enterprise_data_aggregator" {}
-variable "bot_financial_services" {}
-variable "bot_social_media_or_blog" {}
-variable "bot_automated_shopping_cart_and_sniper" {}
-variable "bot_web_archiver" {}
-variable "bot_business_intelligence" {}
-variable "bot_news_aggregator" {}
-variable "bot_rss_feed_reader" {}
-variable "bot_financial_account_aggregator" {}
-variable "bot_media_or_entertainment_search" {}
-variable "bot_seo_analytics_or_marketing" {}
-
-# Bot Transparent Detections Actions
-variable "bot_impersonators_of_known_bots" {}
-variable "bot_development_frameworks" {}
-variable "bot_http_libraries" {}
-variable "bot_web_services_libraries" {}
-variable "bot_open_source_crawlersscraping_platforms" {}
-variable "bot_headless_browsersautomation_tools" {}
-variable "bot_declared_bots_keyword_match" {}
-variable "bot_aggressive_web_crawlers" {}
-variable "bot_browser_impersonator" {}
-variable "bot_web_scraper_reputation" {}
-
-# Bot Active Detections Actions
-variable "bot_cookie_integrity_failed" {}
-variable "bot_session_validation" {}
-variable "bot_client_disabled_javascript_noscript_triggered" {}
-variable "bot_javascript_fingerprint_anomaly" {}
-variable "bot_javascript_fingerprint_not_received" {}
-
+variable "rep_web_attackers_high" {
+  description = "Action for Reputation Profile:  Web Attackers (High Threat)"
+  type        = string
+}
+variable "rep_dos_attackers_high" {
+  description = "Action for Reputation Profile: DoS Attackers (High Threat)"
+  type        = string
+}
+variable "rep_scanning_tools_high" {
+  description = "Action for Reputation Profile: Scanning Tools (High Threat)"
+  type        = string
+}
+variable "rep_web_attackers_low" {
+  description = "Action for Reputation Profile: Web Attackers (Low Threat)"
+  type        = string
+}
+variable "rep_dos_attackers_low" {
+  description = "Action for Reputation Profile: DoS Attackers (Low Threat)"
+  type        = string
+}
+variable "rep_scanning_tools_low" {
+  description = "Action for Reputation Profile: Scanning Tools (Low Threat)"
+  type        = string
+}
+variable "rep_web_scrapers_low" {
+  description = "Action for Reputation Profile: Web Scrapers (Low Threat)"
+  type        = string
+}
+variable "rep_web_scrapers_high" {
+  description = "Action for Reputation Profile: Web Scrapers (High Threat)"
+  type        = string
+}
 
 
 

@@ -1,19 +1,24 @@
 variable "config_name" {
-  type = string
+  description = "Security configuration name"
+  type        = string
 }
 
 variable "config_id" {
-  type = number
+  description = "Security configuration ID"
+  type        = number
 }
 
 variable "note" {
-  type = string
+  description = "Notes for the activation"
+  type        = string
 }
 
 variable "network" {
-  type = string
+  description = "Activation network"
+  type        = string
 }
 
 variable "notification_emails" {
-  type = list(string)
+  description = "List or emails for notifications"
+  type        = list(string)
 }

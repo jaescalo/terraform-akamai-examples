@@ -40,18 +40,3 @@ resource "akamai_appsec_slowpost_protection" "tfdemo" {
   security_policy_id = akamai_appsec_reputation_protection.tfdemo.security_policy_id
   enabled            = var.enable_slow_post
 }
-
-resource "akamai_botman_bot_management_settings" "tfdemo" {
-  config_id          = akamai_appsec_configuration.config.config_id
-  security_policy_id = akamai_appsec_slowpost_protection.tfdemo.security_policy_id
-  bot_management_settings = jsonencode(
-    {
-      "addAkamaiBotHeader" : false,
-      "enableActiveDetections" : true,
-      "enableBotManagement" : var.enable_botman,
-      "enableBrowserValidation" : false,
-      "removeBotManagementCookies" : false,
-      "thirdPartyProxyServiceInUse" : false
-    }
-  )
-}

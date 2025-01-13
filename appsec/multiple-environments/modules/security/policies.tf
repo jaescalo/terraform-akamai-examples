@@ -4,4 +4,3 @@ resource "akamai_appsec_security_policy" "tfdemo" {
   security_policy_name   = var.policy_name
   security_policy_prefix = var.policy_prefix
 }
-

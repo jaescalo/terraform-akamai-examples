@@ -1,8 +1,8 @@
 # Common Variables
 environment     = "dev"
 group_name      = "Demos - Templates"
-config_name     = "dev-tf-demo-appsec"
-description     = "Application security configuration"
+config_name     = "tf-demo-appsec"
+description     = "Application security configuration - DO NOT DELETE"
 hostnames       = ["dev.tf-demo.com"]
 emails          = ["noreply@akamai.com"]
 activation_note = "Activated by Terraform"
@@ -16,7 +16,7 @@ enable_malware             = true
 enable_rate                = true
 enable_reputation          = true
 enable_slow_post           = true
-enable_botman              = true
+enable_bot_management      = true
 
 # Global advanced settings
 pragma_header_name  = "Show-Me-The-Pragma"
@@ -67,6 +67,13 @@ rep_dos_attackers_low   = "alert"
 rep_scanning_tools_low  = "alert"
 rep_web_scrapers_low    = "alert"
 rep_web_scrapers_high   = "deny"
+
+# Bot Management General Settings
+add_akamai_bot_header     = false
+enable_active_detections  = true
+enable_browser_validation = false
+remove_botman_cookies     = false
+third_party_proxy         = false
 
 # Bot Category Actions
 bot_site_monitoring_and_web_development = "monitor"
