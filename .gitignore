@@ -5,7 +5,6 @@
 backend
 CA/
 archive/
-certificates/
 
 # Local .terraform directories
 **/.terraform/*
