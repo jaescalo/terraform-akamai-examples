@@ -1,12 +1,3 @@
-terraform {
-  required_providers {
-    akamai = {
-      source  = "akamai/akamai"
-      version = "= 6.6.0"
-    }
-  }
-}
-
 # Akamai API credentials passed on as environment variables
 provider "akamai" {
   config {

@@ -1,23 +1,25 @@
-group_name = "Demos - Templates"
+edgerc_section = "tf-ps"
+group_name     = "Demos - Templates"
 
 # Certificate Enrollment variables
 # Global Enrollment Parameters
-acknowledge_pre_verification_warnings = true
-common_name                           = "tf-demo.jaescalo.online"
-sans                                  = ["origin-tf-demo.jaescalo.online", "apis.jaescalo.online", "apps.jaescalo.online", "lv46.jaescalo.online", "sulaco.jaescalo.online", "nostromo.jaescalo.online"]
-secure_network                        = "enhanced-tls"
-sni_only                              = true
-# auto_approve_warnings = [
-#   "DNS_NAME_LONGER_THEN_255_CHARS",
-#   "CERTIFICATE_EXPIRATION_DATE_BEYOND_MAX_DAYS",
-#   "TRUST_CHAIN_EMPTY_AND_CERTIFICATE_SIGNED_BY_NON_STANDARD_ROOT"
-# ]
+common_name    = "acheron.jaescalo.online"
+sans           = ["lv426.jaescalo.online", "nostromo.jaescalo.online"]
+secure_network = "enhanced-tls"
+sni_only       = true
+auto_approve_warnings = [
+  "DNS_NAME_LONGER_THEN_255_CHARS",
+  "CERTIFICATE_EXPIRATION_DATE_BEYOND_MAX_DAYS",
+  "TRUST_CHAIN_EMPTY_AND_CERTIFICATE_SIGNED_BY_NON_STANDARD_ROOT"
+]
 signature_algorithm = "SHA-256"
+change_management   = true
+
 # Administrator Contact Details
 admin_first_name       = "Mario"
 admin_last_name        = "Rossi"
 admin_phone            = "+1-311-555-2368"
-admin_email            = "mrossi@example.com"
+admin_email            = "mrossi@sulaco.com"
 admin_address_line_one = "admin_150Broadway"
 admin_city             = "Cambridge"
 admin_country_code     = "US"
@@ -25,6 +27,7 @@ admin_organization     = "admin_ExampleCorp."
 admin_postal_code      = "02142"
 admin_region           = "MA"
 admin_title            = "Administrator"
+
 # Akamai Tech Contact Details
 tech_first_name       = "Juan"
 tech_last_name        = "Perez"
@@ -37,12 +40,14 @@ tech_organization     = "tech_ExampleCorp."
 tech_postal_code      = "02142"
 tech_region           = "MA"
 tech_title            = "Administrator"
+
 # CSR (Cetificate Signing Request) Details
 csr_country_code        = "US"
 csr_city                = "Cambridge"
 csr_organization        = "csr_ExampleCorp."
 csr_organizational_unit = "csr_CorpIT"
 csr_state               = "MA"
+
 # Network Parameters
 disallowed_tls_versions = ["TLSv1", "TLSv1_1"]
 clone_dns_names         = false
@@ -51,6 +56,7 @@ ocsp_stapling           = "on"
 preferred_ciphers       = "ak-akamai-2020q1"
 must_have_ciphers       = "ak-akamai-2020q1"
 quic_enabled            = false
+
 # Organization Details
 org_name             = "org_ExampleCorp."
 org_phone            = "+1-311-555-2370"
@@ -59,7 +65,3 @@ org_city             = "Cambridge"
 org_country_code     = "US"
 org_postal_code      = "02142"
 org_region           = "MA"
-
-# DNS parameters
-dns_zone = "jaescalo.online"
-

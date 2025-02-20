@@ -1,20 +1,14 @@
-# Environment variables (TF_VAR_*)
-variable "akamai_client_secret" {}
-variable "akamai_host" {}
-variable "akamai_access_token" {}
-variable "akamai_client_token" {}
-variable "akamai_account_key" {}
-
 variable "group_name" {}
+variable "edgerc_section" {}
 
 # General Certificate Parameters
-variable "acknowledge_pre_verification_warnings" {}
 variable "common_name" {}
 variable "sans" {}
 variable "secure_network" {}
 variable "sni_only" {}
-#variable "auto_approve_warnings" {}
+variable "auto_approve_warnings" {}
 variable "signature_algorithm" {}
+variable "change_management" {}
 
 # Admin Contact Info
 variable "admin_first_name" {}
@@ -66,6 +60,3 @@ variable "org_city" {}
 variable "org_country_code" {}
 variable "org_postal_code" {}
 variable "org_region" {}
-
-# DNS Parameters
-variable "dns_zone" {}

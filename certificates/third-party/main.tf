@@ -4,15 +4,16 @@ data "akamai_contract" "contract" {
 }
 
 # Create the cert enrollment. 
-resource "akamai_cps_dv_enrollment" "enrollment" {
+resource "akamai_cps_third_party_enrollment" "enrollment" {
   contract_id                           = data.akamai_contract.contract.id
-  acknowledge_pre_verification_warnings = true
   common_name                           = var.common_name
   sans                                  = var.sans
   secure_network                        = var.secure_network
   sni_only                              = var.sni_only
+  acknowledge_pre_verification_warnings = true
+  auto_approve_warnings                 = var.auto_approve_warnings
   signature_algorithm                   = var.signature_algorithm
-  certificate_chain_type                = "default"
+  change_management                     = var.change_management
 
   admin_contact {
     first_name       = var.admin_first_name
@@ -69,32 +70,25 @@ resource "akamai_cps_dv_enrollment" "enrollment" {
     postal_code      = var.org_postal_code
     region           = var.org_region
   }
-
-  timeouts {
-    default = "1h"
-  }
-
-  lifecycle {
-    ignore_changes = [
-      # Ignore changes to CSR to prevent deleting outputs and resources
-      # when there's no CSR available. Which means no challenges are available.
-      csr
-    ]
-  }
 }
 
-# Wait for the challenges to be available
-resource "time_sleep" "wait_for_dns_challenges" {
-  create_duration = "120s"
-  depends_on      = [akamai_cps_dv_enrollment.enrollment]
+# Get the CSR created for the third party cert
+data "akamai_cps_csr" "csr" {
+  enrollment_id = akamai_cps_third_party_enrollment.enrollment.id
 }
 
-resource "akamai_cps_dv_validation" "validation" {
-  enrollment_id                          = akamai_cps_dv_enrollment.enrollment.id
-  sans                                   = concat([var.common_name], var.sans)
+# Upload both RSA and ECDSA certs to Akamai
+resource "akamai_cps_upload_certificate" "upload_cert" {
+  enrollment_id                          = akamai_cps_third_party_enrollment.enrollment.id
+  certificate_rsa_pem                    = acme_certificate.rsa_certificate.certificate_pem
+  trust_chain_rsa_pem                    = acme_certificate.rsa_certificate.issuer_pem
+  certificate_ecdsa_pem                  = acme_certificate.ecdsa_certificate.certificate_pem
+  trust_chain_ecdsa_pem                  = acme_certificate.ecdsa_certificate.issuer_pem
   acknowledge_post_verification_warnings = true
+  acknowledge_change_management          = true
+  wait_for_deployment                    = true
+
   timeouts {
     default = "1h"
   }
-  depends_on = [akamai_dns_record.tf_demo_dns_records]
 }
