@@ -85,7 +85,7 @@ resource "akamai_cps_upload_certificate" "upload_cert" {
   certificate_ecdsa_pem                  = acme_certificate.ecdsa_certificate.certificate_pem
   trust_chain_ecdsa_pem                  = acme_certificate.ecdsa_certificate.issuer_pem
   acknowledge_post_verification_warnings = true
-  acknowledge_change_management          = true
+  acknowledge_change_management          = var.ack_change_management
   wait_for_deployment                    = true
 
   timeouts {

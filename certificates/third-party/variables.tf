@@ -9,6 +9,7 @@ variable "sni_only" {}
 variable "auto_approve_warnings" {}
 variable "signature_algorithm" {}
 variable "change_management" {}
+variable "ack_change_management" {}
 
 # Admin Contact Info
 variable "admin_first_name" {}

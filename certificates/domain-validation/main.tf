@@ -83,12 +83,6 @@ resource "akamai_cps_dv_enrollment" "enrollment" {
   }
 }
 
-# Wait for the challenges to be available
-resource "time_sleep" "wait_for_dns_challenges" {
-  create_duration = "120s"
-  depends_on      = [akamai_cps_dv_enrollment.enrollment]
-}
-
 resource "akamai_cps_dv_validation" "validation" {
   enrollment_id                          = akamai_cps_dv_enrollment.enrollment.id
   sans                                   = concat([var.common_name], var.sans)

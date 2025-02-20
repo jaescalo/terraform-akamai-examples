@@ -12,8 +12,9 @@ auto_approve_warnings = [
   "CERTIFICATE_EXPIRATION_DATE_BEYOND_MAX_DAYS",
   "TRUST_CHAIN_EMPTY_AND_CERTIFICATE_SIGNED_BY_NON_STANDARD_ROOT"
 ]
-signature_algorithm = "SHA-256"
-change_management   = true
+signature_algorithm   = "SHA-256"
+change_management     = true # Enables pushing to the staging network
+ack_change_management = true # Change to true when ready to push to the production network
 
 # Administrator Contact Details
 admin_first_name       = "Mario"
