@@ -42,7 +42,7 @@ tech_postal_code      = "02142"
 tech_region           = "MA"
 tech_title            = "Administrator"
 
-# CSR (Cetificate Signing Request) Details
+# CSR (Certificate Signing Request) Details
 csr_country_code        = "US"
 csr_city                = "Cambridge"
 csr_organization        = "csr_ExampleCorp."
