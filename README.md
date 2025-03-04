@@ -49,10 +49,6 @@ Additionally you can set the path of the log with the `TF_LOG_PATH` variable:
 
 ## Akamai as Code and Terraform Best Practices
 
-falta PM adv mdt 
-falta locking 
-
-
 - **Version Control**: treat Akamai as Code as you would with any of your current applications. This entails the version control repository or preference, access policies, security postures, collaboration, branching and merging schemas.
 
 - **Credentials**: the permissions you need for the Akamai Provider depend on the subset of Akamai resources and data sources you'll use (i.e. EdgeDNS, Appsec, Property Manager, etc). Without these permissions, your Terraform configurations won't execute. Additionally API credential permissions can be assigned on a per group or user basis and set to read or read/write mode. Service credentials can also be created.
