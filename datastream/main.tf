@@ -1,3 +1,11 @@
+/**
+* # DataStream
+*
+* ## Create a New Data Stream
+* Creates a new data stream with all available data sets enabled. 
+*
+*/
+
 data "akamai_contract" "contract" {
   group_name = var.group_name
 }
@@ -8,8 +16,8 @@ data "akamai_datastream_dataset_fields" "all_fields" {
 
 # Get the property IDs
 data "akamai_property" "properties" {
-    count = length(var.properties)
-    name = var.properties[count.index]
+  count = length(var.properties)
+  name  = var.properties[count.index]
 }
 
 locals {
@@ -99,10 +107,9 @@ resource "akamai_datastream" "my_datastream" {
   collect_midgress    = true
 }
 
-
 data "akamai_datastreams" "my_datastreams" {
-  group_id = local.group_id
-  depends_on = [ akamai_datastream.my_datastream ]
+  group_id   = local.group_id
+  depends_on = [akamai_datastream.my_datastream]
 }
 
 # Look for the DataStream ID

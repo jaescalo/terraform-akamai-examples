@@ -1,3 +1,14 @@
+/**
+* # Edge Redirector Cloudlet for Multiple Environments - Alternate Match Rules
+*
+* The purpose of this template is to ease the process of managing multiple environment cloudlet policies (e.g. dev, qa, stage, prod) which require different match rules in Terraform by leveraging the [Akamai Terraform Provider](https://techdocs.akamai.com/terraform/docs).
+*
+* ## Terraform plan/apply
+* To plan/apply a specific environment:
+*
+* `$ terraform plan -var-file=./environments/dev.tfvars`
+*/
+
 locals {
   match_rules_default_json = jsondecode(data.akamai_cloudlets_edge_redirector_match_rule.match_rules_er_default.json)
   match_rules_dev_json     = jsondecode(data.akamai_cloudlets_edge_redirector_match_rule.match_rules_er_dev.json)
@@ -5,8 +16,8 @@ locals {
   match_rules_test_json    = jsondecode(data.akamai_cloudlets_edge_redirector_match_rule.match_rules_er_test.json)
 
   merged_match_rules = {
-    dev = concat(local.match_rules_default_json, local.match_rules_dev_json),
-    qa = concat(local.match_rules_default_json, local.match_rules_qa_json),
+    dev  = concat(local.match_rules_default_json, local.match_rules_dev_json),
+    qa   = concat(local.match_rules_default_json, local.match_rules_qa_json),
     test = concat(local.match_rules_default_json, local.match_rules_test_json)
   }
 }
